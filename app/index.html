@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<title>Collect Bitnami Logos videogame</title>
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/boot.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<script type="text/javascript" src="js/play.js"></script>
+	<style type="text/css">
+	body {
+		margin: 0;
+		padding: 0;
+	}
+	#wrapper {
+		margin: 40px auto 0 auto;
+		width:802px;
+		height:602px;
+	}
+	#game {
+		border:1px solid #000;
+	}
+	</style>
+	<script type="text/javascript">
+	// Global variables
+	var player;
+	var platforms;
+	var cursors;
+	var bitnamiLogos;
+	var score = 0;
+	var scoreText;
+	var baddie_direction = 'right';
+	var baddie_speed = 200;
+	var gameOverText;
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
+
+	// Definitons of stages
+	game.state.add('boot',bootState);
+	game.state.add('menu',menuState);
+	game.state.add('play',playState);
+
+	// We launch the game (first stage)
+	game.state.start('boot');
+	</script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="game"></div>
+	</div>
+</body>
+</html>
