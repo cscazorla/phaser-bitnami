@@ -23,6 +23,7 @@
 	</style>
 	<script type="text/javascript">
 	// Global variables
+	var debug = true;
 	var player;
 	var platforms;
 	var cursors;
@@ -31,6 +32,7 @@
 	var scoreText;
 	var baddie_direction = 'right';
 	var baddie_speed = 200;
+	var baddieNeedsToJump = false;
 	var gameOverText;
 	var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game');
 

@@ -69,6 +69,15 @@ var playState = {
 		baddie.body.collideWorldBounds = true;
 		baddie.animations.add('left', [0, 1], 10, true);
 		baddie.animations.add('right', [2, 3], 10, true);
+
+		// We add a timer to make the baddie jump every 5 seconds
+    timer = game.time.create(false);
+    timer.loop(5000, this.baddieNeedsToJump, this);
+    timer.start();
+	},
+	baddieNeedsToJump: function() {
+		// This variable will be read in next frame in the baddie_moves() function
+		baddieNeedsToJump = true;
 	},
 	setup_bitnamiLogos: function() {
 		bitnamiLogos = game.add.group();
@@ -117,8 +126,8 @@ var playState = {
 		}
 	},
 	baddie_moves: function() {
-		// The baddie moves if she is touching a surface
-		if(baddie.body.touching.down)
+		// If the baddie is falling down we don't change his position/direction
+		if(baddie.body.velocity.y <= 0)
 		{
 			// If she reaches the left/right panel we change the direction (animation)
 			if(baddie.body.x == 0)
@@ -130,6 +139,13 @@ var playState = {
 			{
 				baddie_direction = 'left';
 				baddie_speed = -baddie_speed;
+			}
+
+			// Shall the baddie need to jump?
+			if(baddieNeedsToJump == true)
+			{
+				baddie.body.velocity.y = -350;
+				baddieNeedsToJump = false;
 			}
 
 			// Update baddie animation and direction
@@ -167,5 +183,14 @@ var playState = {
 	},
 	playAgain: function() {
 		game.state.start('play');
+	},
+	render: function() {
+		if(debug == true)
+		{
+			game.debug.text('Time until event: ' + timer.duration.toFixed(0), game.world.width/2, 20);
+			game.debug.text('baddie.body.velocity.y: ' + baddie.body.velocity.y, game.world.width/2, 40);
+			game.debug.text('player.body.velocity.y: ' + player.body.velocity.y, game.world.width/2, 60);
+
+		}
 	}
 }
