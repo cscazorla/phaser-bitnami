@@ -30,8 +30,8 @@ The [index.html](app/index.html) file is in charge of preparing the HTML templat
 
 Although you might think there is a lot of code, it should all be pretty readable (there are a lot of comments). If you get stuck don't hesitate to read the [original tutorial](http://phaser.io/tutorials/making-your-first-phaser-game).
 
-
 ## Next steps
-Are you comfortable with this code and you would like to improve the game? Here you are a few challenges:
+Are you comfortable with this code? Would like to improve the game? Here you are a few challenges:
 - Implement a victory message when all Bitnami logos are collected.
 - Make the baddie jump randomly when chasing you.
+- Add a button for pausing the game.
