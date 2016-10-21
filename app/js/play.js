@@ -84,10 +84,11 @@ var playState = {
 		bitnamiLogos.enableBody = true;
 
 		//  Here we'll create 8 bitnami logos evenly spaced apart
-		for (var i = 0; i < 8; i++)
+		var sep_between_logos = game.world.width/totalBitnamiLogos;
+		for (var i = 0; i < totalBitnamiLogos; i++)
 		{
 			//  Create a bitnami logo inside of the 'bitnamiLogos' group
-			var bitnamiLogo = bitnamiLogos.create(i * 100, 0, 'bitnamiLogo');
+			var bitnamiLogo = bitnamiLogos.create(i * sep_between_logos, 0, 'bitnamiLogo');
 
 			//  Let gravity do its thing
 			bitnamiLogo.body.gravity.y = 300;
@@ -160,20 +161,34 @@ var playState = {
 		//  Add and update the score
 		score += 10;
 		scoreText.text = 'Score: ' + score;
+
+		// Have we collected all Bitnami logos?
+		if(bitnamiLogos.total == 0) {
+			// Removes player and baddie from the screen
+			player.kill();
+			baddie.kill();
+
+			// Play again button
+			this.playAgainButton('You win!');
+		}
+
 	},
 	baddie_catches_player: function (player, baddie) {
 		// Removes the player from the screen
 		player.kill();
 
-		// Game over text
+		// Play again button
+		this.playAgainButton('You lose!');
+	},
+	playAgainButton: function(message) {
+		// Adding a bar for the text
 		var bar = game.add.graphics();
     bar.beginFill(0x000000, 0.2);
     bar.drawRect(0, 100, 800, 200);
-		gameOverText = game.add.text(0, 0, 'Game Over', {font: "bold 32px Arial", boundsAlignH: "center", boundsAlignV: "middle", fill: "#fff"});
+		gameOverText = game.add.text(0, 0, message, {font: "bold 32px Arial", boundsAlignH: "center", boundsAlignV: "middle", fill: "#fff"});
 		gameOverText.setShadow(3, 3, 'rgba(0,0,0,0.5)', 2);
 		gameOverText.setTextBounds(0, 100, 800, 100);
 
-		// Play again text
 		var playAgainLabel = game.add.text(0,0,'Press the "S" key to play again',{font: '25px Arial',fill:'#ffffff',boundsAlignH:"center"});
 		playAgainLabel.setTextBounds(0, 250, game.world.width, 200);
 
