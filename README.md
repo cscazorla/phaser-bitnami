@@ -36,3 +36,5 @@ Are you comfortable with this code? Would like to improve the game? Here you are
 - Make the baddie jump randomly when chasing you.
 - Add a button for pausing the game.
 - Add a debug environment.
+
+**Hint**: These features are available in the development branch ;)
