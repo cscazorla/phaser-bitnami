@@ -1,6 +1,6 @@
 apache:
   image: bitnami/apache:latest
   volumes:
-    - /Users/carlossanchezcazorla/htdocs/phaser/app:/app
+    - ./app:/app
   ports:
       - 8080:80
