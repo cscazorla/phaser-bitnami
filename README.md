@@ -35,3 +35,5 @@ Are you comfortable with this code? Would like to improve the game? Here you are
 - Implement a victory message when all Bitnami logos are collected.
 - Make the baddie jump randomly when chasing you.
 - Add a button for pausing the game.
+
+**Hint**: These features are available in the development branch ;)
